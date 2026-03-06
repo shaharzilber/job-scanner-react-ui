@@ -48,7 +48,7 @@ apiClient.interceptors.response.use(
 
     // Handle 401 Unauthorized - Try to refresh token
     // Don't try to refresh on login or refresh endpoints
-    const isAuthEndpoint = originalRequest.url?.includes('/auth/login') || originalRequest.url?.includes('/auth/refresh');
+    const isAuthEndpoint = originalRequest?.url?.includes('/auth/login') || originalRequest?.url?.includes('/auth/refresh');
     if (error.response?.status === 401 && originalRequest && !isAuthEndpoint) {
       try {
         const refreshToken = localStorage.getItem('refresh_token');

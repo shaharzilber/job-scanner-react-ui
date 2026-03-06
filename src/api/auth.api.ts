@@ -4,7 +4,7 @@ import type { ApiResponse, LoginRequest, LoginResponse, RefreshTokenRequest } fr
 export const authApi = {
   // Login
   login: async (credentials: LoginRequest): Promise<LoginResponse> => {
-    const response = await apiClient.post<ApiResponse<LoginResponse>>('/auth/login', credentials);
+    const response = await apiClient.post<ApiResponse<LoginResponse>>('/auth/login', credentials) as any;
     if (!response.data) {
       throw new Error('Login failed');
     }
@@ -18,7 +18,7 @@ export const authApi = {
 
   // Refresh token
   refreshToken: async (request: RefreshTokenRequest): Promise<{ access_token: string }> => {
-    const response = await apiClient.post<ApiResponse<{ access_token: string }>>('/auth/refresh', request);
+    const response = await apiClient.post<ApiResponse<{ access_token: string }>>('/auth/refresh', request) as any;
     if (!response.data) {
       throw new Error('Token refresh failed');
     }
@@ -27,7 +27,7 @@ export const authApi = {
 
   // Get current user
   getCurrentUser: async (): Promise<any> => {
-    const response = await apiClient.get<ApiResponse<any>>('/auth/me');
+    const response = await apiClient.get<ApiResponse<any>>('/auth/me') as any;
     return response.data;
   },
 };

@@ -42,7 +42,7 @@ export const useScan = () => {
 // Hook for polling scan progress
 export const useScanProgress = () => {
   const { isScanning, setProgress, setScanning, setError } = useScanStore();
-  const pollingIntervalRef = useRef<NodeJS.Timeout>();
+  const pollingIntervalRef = useRef<number>();
 
   const { data: progress } = useQuery({
     queryKey: ['scan-progress'],
